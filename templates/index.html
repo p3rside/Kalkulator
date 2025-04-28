@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalkulator</title>
+  <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <h1>Kalkulator prosty</h1>
+    <div class="calculator">
+      <!-- Wyświetlacz -->
+      <div class="display" id="display">{{ expression }}{% if result != '' %}= {{ result }}{% endif %}</div>
+      <form method="post">
+        <!-- Ukryte pole przechowujące wyrażenie -->
+        <input type="hidden" name="expression" id="expression" value="{{ expression }}">
+        <!-- Przyciski -->
+        <button type="button" onclick="append('7')">7</button>
+        <button type="button" onclick="append('8')">8</button>
+        <button type="button" onclick="append('9')">9</button>
+        <button type="button" class="operator" onclick="append('/')">÷</button>
+        <button type="button" onclick="append('4')">4</button>
+        <button type="button" onclick="append('5')">5</button>
+        <button type="button" onclick="append('6')">6</button>
+        <button type="button" class="operator" onclick="append('*')">×</button>
+        <button type="button" onclick="append('1')">1</button>
+        <button type="button" onclick="append('2')">2</button>
+        <button type="button" onclick="append('3')">3</button>
+        <button type="button" class="operator" onclick="append('-')">−</button>
+        <button type="button" onclick="append('0')">0</button>
+        <button type="button" onclick="append('.')">.</button>
+        <button type="button" class="operator" onclick="append('+')">+</button>
+        <button type="submit" class="operator">=</button>
+        <!-- Nowe przyciski w odpowiednim układzie -->
+        <button type="button" class="operator" onclick="calculateSquareRoot()">√</button>
+        <button type="button" class="operator" onclick="calculateSquare()">x²</button>
+        <button type="button" onclick="clearExpression()">C</button>
+        <button type="button" onclick="undo()">Undo</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    // Dodawanie wartości do wyrażenia
+    function append(value) {
+      const expressionField = document.getElementById('expression');
+      expressionField.value += value;
+      document.getElementById('display').textContent = expressionField.value;
+    }
+
+    // Czyszczenie całego wyrażenia
+    function clearExpression() {
+      const expressionField = document.getElementById('expression');
+      expressionField.value = '';
+      document.getElementById('display').textContent = '0'; // Reset wyświetlacza
+    }
+
+    // Wycofanie ostatniego znaku
+    function undo() {
+      const expressionField = document.getElementById('expression');
+      expressionField.value = expressionField.value.slice(0, -1);
+      document.getElementById('display').textContent = expressionField.value || '0';
+    }
+
+    // Pierwiastek kwadratowy
+    function calculateSquareRoot() {
+      const expressionField = document.getElementById('expression');
+      let value = parseFloat(expressionField.value);
+      if (!isNaN(value)) {
+        value = Math.sqrt(value); // Obliczanie pierwiastka
+        expressionField.value = value;
+        document.getElementById('display').textContent = value;
+      } else {
+        document.getElementById('display').textContent = 'Error';
+      }
+    }
+
+    // Kwadrat liczby
+    function calculateSquare() {
+      const expressionField = document.getElementById('expression');
+      let value = parseFloat(expressionField.value);
+      if (!isNaN(value)) {
+        value = value * value; // Obliczanie kwadratu
+        expressionField.value = value;
+        document.getElementById('display').textContent = value;
+      } else {
+        document.getElementById('display').textContent = 'Error';
+      }
+    }
+
+  </script>
+</body>
+</html>

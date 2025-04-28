@@ -1,0 +1,53 @@
+/* Ustawienia ogólne */
+body {
+    background-color: #1a1a1a;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><text x="10" y="50" font-size="20" fill="gray">π</text></svg>');
+    background-repeat: repeat;
+    background-size: 150px 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .app-container {
+    text-align: center;
+    color: #ffffff;
+  }
+  
+  /* Wyświetlacz kalkulatora */
+  .display {
+    background-color: #1a1a1a;
+    color: white;
+    font-size: 24px;
+    text-align: right;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+  }
+  
+  /* Formularz i przyciski */
+  form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Układ w 4 kolumnach */
+    gap: 10px;
+  }
+  
+  button {
+    background-color: #4a4a4a;
+    border: none;
+    color: white;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #626262;
+  }
+  
+  .operator {
+    background-color: #9a4b4b;
+  }
